@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+*.py[cod]
+*$py.class
+**/__pycache__/
+chroma_db/
+logs/
+.envgit add .
