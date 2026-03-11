@@ -5,4 +5,9 @@ __pycache__/
 **/__pycache__/
 chroma_db/
 logs/
-.envgit add .
+.env
+
+# Generated artifacts: ignore by default, keep only intentional showcase files.
+artifacts/*
+!artifacts/app_summary_cn_one_page.pdf
+!artifacts/streamlit_direct.png

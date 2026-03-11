@@ -1,1 +1,21 @@
 external_data_path: data/external/records.csv
+user_context:
+  trust_user_headers: true
+  user_id_header: X-User-Id
+  city_header: X-User-City
+  auth_header: Authorization
+  auth_cookie: auth_token
+  userinfo_url: "http://127.0.0.1:9000/api/me"
+  userinfo_timeout: 5
+  userinfo_user_id_field: user_id
+  userinfo_city_field: city
+  userinfo_permissions_field: permissions
+  userinfo_authenticated_field: authenticated
+  allow_query_param_context: true
+  query_user_id_key: user_id
+  query_city_key: city
+  ip_header_candidates:
+    - X-Forwarded-For
+    - X-Real-IP
+    - CF-Connecting-IP
+  geoip_url: https://ipwho.is/{ip}

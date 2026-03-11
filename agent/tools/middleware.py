@@ -11,6 +11,7 @@ from utils.logger_handler import logger
 from langgraph.types import Command
 
 from utils.prompt_loader import load_report_prompts, load_system_prompts
+from utils.user_context import get_current_user_context
 
 
 @wrap_tool_call     # 用于在 AI Agent 调用外部工具时进行审计、状态管理和错误监控。
@@ -29,6 +30,7 @@ def monitor_tool(
 
         if request.tool_call['name'] == "fill_context_for_report":
             request.runtime.context["report"] = True
+            request.runtime.context["user_context"] = get_current_user_context()
 
         return result
     except Exception as e:
@@ -43,6 +45,7 @@ def log_before_model(
     logger.info(f"[log_before_model]即将调用模型，带有{len(state['messages'])}条消息。")
 
     logger.debug(f"[log_before_model]{type(state['messages'][-1]).__name__} | {state['messages'][-1].content.strip()}")
+    logger.debug(f"[log_before_model]user_context={runtime.context.get('user_context', {})}")
 
     return None
 
